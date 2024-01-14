@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Running Plans</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+        <header class="text-center mt-5">
+            <h1 class="text-white">Half Marathon Training Plan</h1>
+        </header>
+        <div class="row justify-content-center">
+            <div class="col-md-3 pt-4 pb-2 text-center">
+                <label class="text-white">Current Miles run per week: </label>
+                <select id="current-miles-per-week" onchange="changeWeeklyDisplay(week.value, plan.value)">
+                    <option value="0">10-19</option>
+                    <option value="1">20-29</option>
+                    <option value="2">30-39</option>
+                    <option value="3">40-59</option>
+                    <option value="4">60+</option>
+                </select>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-3 pb-4 pt-2 text-center">
+                <label class="text-white">Week: </label>
+                <select id="week" onchange="changeWeeklyDisplay(week.value, plan.value)">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="full-output" class="container">
+        <div class="row">
+            <div class="col">
+            </div>
+        </div>
+        <div class="row equal-height-row d-flex flex-wrap align-items-center">
+            <div class="col-lg-3 col-md-6 p-4 d-flex flex-column justify-content-between">
+                <div class="daily-plan card col" id="monday">
+                    <div class="card-header">
+                        <h3>Monday</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><span class="daily-mileage" id="monday-miles"></span> Miles - <span class="daily-workout-type" id="monday-workout-type"></span></p>
+                        <p><span class="daily-instructions" id="monday-instructions"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 p-4 d-flex flex-column justify-content-between">
+                <div class="daily-plan card col" id="tuesday">
+                    <div class="card-header">
+                        <h3>Tuesday</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><span class="daily-mileage" id="tuesday-miles"></span> Miles - <span class="daily-workout-type" id="tuesday-workout-type"></span></p>
+                        <p><span class="daily-instructions" id="tuesday-instructions"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 p-4 d-flex flex-column justify-content-between">
+                <div class="daily-plan card col" id="wednesday">
+                    <div class="card-header">
+                        <h3>Wednesday</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><span class="daily-mileage" id="wednesday-miles"></span> Miles - <span class="daily-workout-type" id="wednesday-workout-type"></span></p>
+                        <p><span class="daily-instructions" id="wednesday-instructions"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 p-4 d-flex flex-column justify-content-between">
+                <div class="daily-plan card" id="thursday">
+                    <div class="card-header">
+                        <h3>Thursday</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><span class="daily-mileage" id="thursday-miles"></span> Miles - <span class="daily-workout-type" id="thursday-workout-type"></span></p>
+                        <p><span class="daily-instructions" id="thursday-instructions"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row equal-height-row d-flex flex-wrap align-items-center">
+            <div class="col-lg-3 col-md-6 p-4 d-flex flex-column justify-content-between">
+                <div class="daily-plan card" id="friday">
+                    <div class="card-header">
+                        <h3>Friday</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><span class="daily-mileage" id="friday-miles"></span> Miles - <span class="daily-workout-type" id="friday-workout-type"></span></p>
+                        <p><span class="daily-instructions" id="friday-instructions"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 p-4 d-flex flex-column justify-content-between">
+                <div class="daily-plan card" id="saturday">
+                    <div class="card-header">
+                        <h3>Saturday</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Total Mileage: <span class="daily-mileage" id="saturday-miles"></span> Miles - <span class="daily-workout-type" id="saturday-workout-type"></span></p>
+                        <p><span class="daily-instructions" id="saturday-instructions"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 p-4 d-flex flex-column justify-content-between">
+                <div class="daily-plan card" id="sunday">
+                    <div class="card-header">
+                        <h3>Sunday</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><span class="daily-mileage" id="sunday-miles"></span> Miles - <span class="daily-workout-type" id="sunday-workout-type"></span></p>
+                        <p><span class="daily-instructions" id="sunday-instructions"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 p-4 d-flex flex-column justify-content-between">
+                <div class="daily-plan card" id="weekly-total">
+                    <div class="card-header">
+                        <h3>Week Recap</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Total Mileage: <span class="weekly-mileage" id="weekly-miles"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4 p-4 text-center">
+                <label class="text-white">Current Estimated Mile Time: </label>
+                <select id="pace" onchange="changePacingDisplay(pace.value)">
+                    <option value="0">Sub-5</option>
+                    <option value="1">5-5:59</option>
+                    <option value="2">6-6:59</option>
+                    <option value="3">7-7:59</option>
+                    <option value="4">8-8:59</option>
+                    <option value="5">9-9:59</option>
+                    <option value="6">10-10:59</option>
+                    <option value="7">11-11:59</option>
+                    <option value="8">12-12:59</option>
+                    <option value="9">13-13:59</option>
+                    <option value="10">14-14:59</option>
+                    <option value="11">15+</option>
+                </select>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div id="pacing" class="col-lg-2 col-md-4 p-2 d-flex flex-column justify-content-between text-center">
+                <p class="text-white">Easy Pace: <span id="easy-pace"></span></p>
+            </div>
+            <div id="pacing" class="col-lg-2 col-md-4 p-2 d-flex flex-column justify-content-between text-center">
+                <p class="text-white">Marathon Pace: <span id="marathon-pace"></span></p>
+            </div>
+            <div id="pacing" class="col-lg-2 col-md-4 p-2 d-flex flex-column justify-content-between text-center">
+                <p class="text-white">Tempo Pace: <span id="tempo-pace"></span></p>
+            </div>
+            <div id="pacing" class="col-lg-2 col-md-4 p-2 d-flex flex-column justify-content-between text-center">
+                <p class="text-white">Interval Pace: <span id="interval-pace"></span></p>
+            </div>
+            <div id="pacing" class="col-lg-2 col-md-4 p-2 d-flex flex-column justify-content-between text-center">
+                <p class="text-white">Repetition Pace: <span id="repetition-pace"></span></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script src="script.js"></script>
+  </body>
+</html>
